@@ -6,7 +6,7 @@ import Moon from "/public/assets/dark-mode.svg";
 
 export default function Header() {
   return (
-    <div className="flex justify-between items-center mt-10">
+    <div className="absolute top-0 w-full flex justify-between items-center pt-10">
       <Image
         className="size-16 sm:size-20 md:size-24"
         src={"./assets/vision-twenty-light-logo.svg"}
