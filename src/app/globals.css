@@ -15,3 +15,17 @@ body {
   color: var(--foreground);
   font-family: geistSans;
 }
+
+@layer components {
+  .wrapper {
+    width: 100%;
+    max-width: 960px;
+    padding-inline: 1.5rem;
+    margin-inline: auto;
+    @media (min-width: 40rem) {
+      & {
+        padding-inline: 2.5rem;
+      }
+    }
+  }
+}
