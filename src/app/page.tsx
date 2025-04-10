@@ -1,9 +1,13 @@
 import Header from "@/components/header";
+import Timer from "@/components/timer";
 
 export default function Home() {
   return (
     <div className="wrapper">
-      <Header />
+      <div className="h-screen relative flex flex-col items-center justify-center">
+        <Header />
+        <Timer />
+      </div>
     </div>
   );
 }
