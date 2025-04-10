@@ -13,9 +13,10 @@ const neopixel = localFont({
       weight: "400",
     },
   ],
+  variable: "--font-neopixel",
 });
 
-const geistSans = localFont({
+const geist = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist",
 });
@@ -50,7 +51,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Vision20" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
-      <body className={`${geistSans.variable} ${neopixel} antialiased`}>
+      <body className={`${geist.variable} ${neopixel.variable} antialiased`}>
         {children}
       </body>
     </html>
