@@ -1,5 +1,6 @@
 import Header from "@/components/header";
 import Timer from "@/components/timer";
+import TimerInfo from "@/components/timerInfo";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
         <Header />
         <Timer />
       </div>
+      <TimerInfo />
     </div>
   );
 }
