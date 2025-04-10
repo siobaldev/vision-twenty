@@ -6,14 +6,14 @@
 }
 
 @theme {
-  --font-sans: var(--font-geist);
-  --font-display: "neopixel", var(--font-geist);
+  --font-geist: "geist", sans-serif;
+  --font-neopixel: "neopixel", sans-serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: geistSans;
+  font-family: var(--font-geist);
 }
 
 @layer components {
