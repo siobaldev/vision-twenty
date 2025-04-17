@@ -2,18 +2,9 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 
-const neopixel = localFont({
-  src: [
-    {
-      path: "./fonts/neopixel.woff",
-      weight: "400",
-    },
-    {
-      path: "./fonts/neopixel.woff2",
-      weight: "400",
-    },
-  ],
-  variable: "--font-neopixel",
+const orbitron = localFont({
+  src: "./fonts/orbitron.woff",
+  variable: "--font-orbitron",
 });
 
 const geist = localFont({
@@ -51,7 +42,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Vision20" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
-      <body className={`${geist.variable} ${neopixel.variable} antialiased`}>
+      <body className={`${geist.variable} ${orbitron.variable} antialiased`}>
         {children}
       </body>
     </html>
