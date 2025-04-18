@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const orbitron = localFont({
-  src: "./fonts/orbitron.woff",
+  src: "./fonts/orbitron-medium-webfont.woff",
   variable: "--font-orbitron",
 });
 
