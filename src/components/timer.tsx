@@ -1,14 +1,84 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
 import Play from "/public/assets/play.svg";
 import Stop from "/public/assets/stop.svg";
+import Pause from "/public/assets/pause.svg";
+
 export default function Timer() {
+  const initialTime = 1 * 60;
+  const restTime = 20;
+  const [timeLeft, setTimeLeft] = useState(initialTime);
+  const [isRunning, setIsRunning] = useState(false);
+  const [isResting, setIsResting] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    let intervalID: NodeJS.Timeout;
+
+    if (!audioRef.current) {
+      audioRef.current = new Audio("/audio/fireflies-alarm.mp3");
+    }
+
+    if (isRunning && timeLeft > 0) {
+      intervalID = setInterval(() => {
+        setTimeLeft((prevTime) => prevTime - 1);
+      }, 1000);
+    } else if (timeLeft === 0 && !isResting) {
+      audioRef.current!.play();
+      setTimeout(() => {
+        setIsResting(true);
+        setTimeLeft(restTime);
+      }, 4000);
+    }
+
+    if (timeLeft === 0 && isResting) {
+      audioRef.current!.play();
+      setTimeout(() => {
+        setIsResting(false);
+        setTimeLeft(initialTime);
+      }, 4000);
+    }
+
+    return () => {
+      clearInterval(intervalID);
+    };
+  }, [isRunning, timeLeft, isResting]);
+
+  const toggleTimer = () => {
+    setIsRunning(!isRunning);
+  };
+
+  const resetTimer = () => {
+    setIsRunning(false);
+    setTimeLeft(initialTime);
+  };
+
+  const formatTime = (second: number): string => {
+    const mins = Math.floor(second / 60);
+    const secs = second % 60;
+    return `${mins.toString().padStart(2, "0")}:${secs
+      .toString()
+      .padStart(2, "0")}`;
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center">
-      <h1 className="font-neopixel text-8xl sm:text-[8rem] md:text-[12rem] lg:text-[14rem] xl:text-[17rem] select-none">
-        20:00
+    <div className="flex flex-col items-center gap-y-4 justify-center">
+      <h1 className="font-orbitron text-8xl sm:text-[8rem] md:text-[12rem] lg:text-[14rem] tracking-widest select-none">
+        {formatTime(timeLeft)}
       </h1>
       <div className="flex gap-x-8 mt-10">
-        <Stop className="size-10 sm:size-12 md:size-16 lg:size-20" />
-        <Play className="size-10 sm:size-12 md:size-16 lg:size-20" />
+        <button onClick={resetTimer}>
+          <Stop className="size-10 sm:size-12 md:size-16 lg:size-20" />
+        </button>
+
+        <button onClick={toggleTimer}>
+          {isRunning ? (
+            <Pause className="size-10 sm:size-12 md:size-16 lg:size-20" />
+          ) : (
+            <Play className="size-10 sm:size-12 md:size-16 lg:size-20" />
+          )}
+        </button>
       </div>
     </div>
   );
