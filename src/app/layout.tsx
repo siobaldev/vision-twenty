@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Providers } from "@/components/theme-provider";
+import { Providers } from "@/components/themeProvider";
 import "./globals.css";
 
 const orbitron = localFont({
