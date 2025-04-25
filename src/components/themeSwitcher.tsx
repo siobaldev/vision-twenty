@@ -2,8 +2,8 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import Sun from "/public/assets/light-mode.svg";
-import Moon from "/public/assets/dark-mode.svg";
+import { IoSunny } from "react-icons/io5";
+import { IoMoon } from "react-icons/io5";
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -18,9 +18,9 @@ export function ThemeSwitcher() {
   return (
     <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
       {theme === "light" ? (
-        <Moon className="size-8 sm:size-12" />
+        <IoMoon className="size-8 sm:size-12" />
       ) : (
-        <Sun className="size-8 sm:size-12" />
+        <IoSunny className="size-8 sm:size-12" />
       )}
     </button>
   );

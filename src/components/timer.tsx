@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import Play from "/public/assets/play.svg";
-import Stop from "/public/assets/stop.svg";
-import Pause from "/public/assets/pause.svg";
+import { IoStop } from "react-icons/io5";
+import { IoPlay } from "react-icons/io5";
+import { IoPause } from "react-icons/io5";
 
 export default function Timer() {
   const initialTime = 1 * 60;
@@ -67,16 +67,16 @@ export default function Timer() {
       <h1 className="font-orbitron text-8xl sm:text-[8rem] md:text-[12rem] lg:text-[14rem] tracking-widest select-none">
         {formatTime(timeLeft)}
       </h1>
-      <div className="flex gap-x-8 mt-10">
+      <div className="flex gap-x-10 mt-10">
         <button onClick={resetTimer}>
-          <Stop className="size-10 sm:size-12 md:size-16 lg:size-20" />
+          <IoStop className="size-14 sm:size-16 md:size-20" />
         </button>
 
         <button onClick={toggleTimer}>
           {isRunning ? (
-            <Pause className="size-10 sm:size-12 md:size-16 lg:size-20" />
+            <IoPause className="size-14 sm:size-16 md:size-20" />
           ) : (
-            <Play className="size-10 sm:size-12 md:size-16 lg:size-20" />
+            <IoPlay className="size-14 sm:size-16 md:size-20" />
           )}
         </button>
       </div>

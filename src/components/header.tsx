@@ -1,7 +1,7 @@
 import Image from "next/image";
-import Setting from "/public/assets/setting.svg";
-import Sound from "/public/assets/sound.svg";
 import { ThemeSwitcher } from "./themeSwitcher";
+import { RiSettings3Fill } from "react-icons/ri";
+import { RiMusic2Fill } from "react-icons/ri";
 
 export default function Header() {
   return (
@@ -14,10 +14,10 @@ export default function Header() {
         alt="vision-twenty-logo"
       />
 
-      <div className="flex gap-x-2 md:gap-x-6">
-        <Sound className="size-8 sm:size-12" />
+      <div className="flex gap-x-6 md:gap-x-10">
+        <RiMusic2Fill className="size-8 sm:size-12" />
         <ThemeSwitcher />
-        <Setting className="size-8 sm:size-12" />
+        <RiSettings3Fill className="size-8 sm:size-12" />
       </div>
     </div>
   );
