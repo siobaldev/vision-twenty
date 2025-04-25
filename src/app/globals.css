@@ -1,13 +1,24 @@
 @import "tailwindcss";
 
-:root {
-  --background: #f2f0e3;
-  --foreground: #2e2e2e;
-}
-
 @theme {
+  /* Fonts */
   --font-geist: "geist", sans-serif;
   --font-orbitron: "orbitron", sans-serif;
+  /* Colors */
+  --color-light: #f2f0e3;
+  --color-dark: #1f1f1f;
+  --color-light-text: #2e2e2e;
+  --color-dark-text: #d1cfc0;
+}
+
+:root {
+  --background: var(--color-light);
+  --foreground: var(--color-light-text);
+}
+
+.dark {
+  --background: var(--color-dark);
+  --foreground: var(--color-dark-text);
 }
 
 body {

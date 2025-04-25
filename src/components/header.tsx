@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Setting from "/public/assets/setting.svg";
 import Sound from "/public/assets/sound.svg";
-import Sun from "/public/assets/light-mode.svg";
-import Moon from "/public/assets/dark-mode.svg";
+import { ThemeSwitcher } from "./themeSwitcher";
 
 export default function Header() {
   return (
@@ -17,7 +16,7 @@ export default function Header() {
 
       <div className="flex gap-x-2 md:gap-x-6">
         <Sound className="size-8 sm:size-12" />
-        <Moon className="size-8 sm:size-12" />
+        <ThemeSwitcher />
         <Setting className="size-8 sm:size-12" />
       </div>
     </div>

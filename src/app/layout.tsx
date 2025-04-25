@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Providers } from "@/components/theme-provider";
 import "./globals.css";
 
 const orbitron = localFont({
@@ -24,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link
           rel="icon"
@@ -43,7 +44,7 @@ export default function RootLayout({
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
       <body className={`${geist.variable} ${orbitron.variable} antialiased`}>
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
