@@ -13,7 +13,7 @@ export function ThemeSwitcher() {
     setMounted(true);
   }, []);
 
-  if (!mounted) return null;
+  if (!mounted) return <div className="size-8 sm:size-12" />;
 
   return (
     <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
