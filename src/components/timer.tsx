@@ -6,7 +6,7 @@ import { IoPlay } from "react-icons/io5";
 import { IoPause } from "react-icons/io5";
 
 export default function Timer() {
-  const initialTime = 1 * 60;
+  const initialTime = 20 * 60;
   const restTime = 20;
   const [timeLeft, setTimeLeft] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(false);
@@ -57,14 +57,19 @@ export default function Timer() {
   const formatTime = (second: number): string => {
     const mins = Math.floor(second / 60);
     const secs = second % 60;
-    return `${mins.toString().padStart(2, "0")}:${secs
-      .toString()
-      .padStart(2, "0")}`;
+
+    const formattedMins = mins.toString().padStart(2, "0");
+    const formattedSecs = secs.toString().padStart(2, "0");
+
+    const finalMins = formattedMins.replace(/0/g, "O");
+    const finalSecs = formattedSecs.replace(/0/g, "O");
+
+    return `${finalMins}:${finalSecs}`;
   };
 
   return (
     <div className="flex flex-col items-center gap-y-4 justify-center">
-      <h1 className="font-orbitron text-8xl sm:text-[8rem] md:text-[12rem] lg:text-[14rem] tracking-widest select-none">
+      <h1 className="font-orbitron text-7xl min-[30rem]:text-8xl sm:text-[8rem] md:text-[12rem] tracking-wider lg:text-[12rem] select-none">
         {formatTime(timeLeft)}
       </h1>
       <div className="flex gap-x-10 mt-10">
