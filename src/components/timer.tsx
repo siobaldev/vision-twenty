@@ -58,7 +58,7 @@ export default function Timer() {
       clearTimeout(timeoutID);
       clearInterval(intervalID);
     };
-  }, [isRunning, timeLeft, isResting]);
+  }, [isRunning, timeLeft, isResting, audioDuration, initialTime]);
 
   const toggleTimer = () => {
     setIsRunning(!isRunning);
