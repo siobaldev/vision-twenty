@@ -6,18 +6,32 @@ import { IoPlay } from "react-icons/io5";
 import { IoPause } from "react-icons/io5";
 
 export default function Timer() {
-  const initialTime = 20 * 60;
+  const initialTime = 1 * 60;
   const restTime = 20;
-  const [timeLeft, setTimeLeft] = useState(initialTime);
-  const [isRunning, setIsRunning] = useState(false);
-  const [isResting, setIsResting] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<number>(initialTime);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [isResting, setIsResting] = useState<boolean>(false);
+  const [audioDuration, setAudioDuration] = useState<number>(1);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    let intervalID: NodeJS.Timeout;
+    let intervalID: NodeJS.Timeout | undefined;
+    let timeoutID: NodeJS.Timeout | undefined;
 
     if (!audioRef.current) {
-      audioRef.current = new Audio("/audio/fireflies-alarm.mp3");
+      const audio = new Audio("/audio/fireflies-alarm.mp3");
+      audioRef.current = audio;
+
+      const handleAudioData = () => {
+        const duration = audio.duration;
+        setAudioDuration(duration);
+      };
+
+      audio.addEventListener("loadedmetadata", handleAudioData);
+
+      return () => {
+        audio.removeEventListener("loadedmetadata", handleAudioData);
+      };
     }
 
     if (isRunning && timeLeft > 0) {
@@ -26,21 +40,22 @@ export default function Timer() {
       }, 1000);
     } else if (timeLeft === 0 && !isResting) {
       audioRef.current!.play();
-      setTimeout(() => {
+      timeoutID = setTimeout(() => {
         setIsResting(true);
         setTimeLeft(restTime);
-      }, 4000);
+      }, audioDuration * 1000);
     }
 
     if (timeLeft === 0 && isResting) {
       audioRef.current!.play();
-      setTimeout(() => {
+      timeoutID = setTimeout(() => {
         setIsResting(false);
         setTimeLeft(initialTime);
-      }, 4000);
+      }, audioDuration * 1000);
     }
 
     return () => {
+      clearTimeout(timeoutID);
       clearInterval(intervalID);
     };
   }, [isRunning, timeLeft, isResting]);
@@ -50,6 +65,10 @@ export default function Timer() {
   };
 
   const resetTimer = () => {
+    if (audioRef.current && !audioRef.current?.paused) {
+      audioRef.current!.pause();
+      audioRef.current.currentTime = 0;
+    }
     setIsRunning(false);
     setTimeLeft(initialTime);
   };
