@@ -2,8 +2,7 @@
 
 A simple, eye-friendly timer application built to help reduce digital eye strain using the **20-20-20 rule**.
 
-#### 🔗 <a href="https://vision-twenty.vercel.app/" target="_blank">Live Demo</a>
-
+#### 🔗 <a href="https://vision-twenty.vercel.app/" rel="noreferrer noopener">Live Demo</a>
 ---
 
 ## 📖 About the 20-20-20 Rule
