@@ -14,24 +14,16 @@ export default function Logo() {
   if (!mounted) return <div className="size-16 sm:size-20 md:size-24" />;
 
   return (
-    <>
-      {theme === "light" ? (
-        <Image
-          className="size-16 sm:size-20 md:size-24"
-          src={"/assets/vision-twenty-light-logo.svg"}
-          height={100}
-          width={100}
-          alt="vision-twenty-logo"
-        />
-      ) : (
-        <Image
-          className="size-16 sm:size-20 md:size-24"
-          src={"/assets/vision-twenty-dark-logo.svg"}
-          height={100}
-          width={100}
-          alt="vision-twenty-logo"
-        />
-      )}
-    </>
+    <Image
+      className="size-16 sm:size-20 md:size-24"
+      src={
+        theme === "light"
+          ? "/assets/vision-twenty-light-logo.svg"
+          : "/assets/vision-twenty-dark-logo.svg"
+      }
+      height={100}
+      width={100}
+      alt="vision-twenty-logo"
+    />
   );
 }

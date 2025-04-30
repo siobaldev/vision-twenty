@@ -92,7 +92,7 @@ export default function Timer() {
         {formatTime(timeLeft)}
       </h1>
       <div className="flex gap-x-10 mt-10">
-        <button onClick={resetTimer}>
+        <button onClick={resetTimer} disabled={isRunning ? false : true}>
           <IoStop className="size-14 sm:size-16 md:size-20" />
         </button>
 
