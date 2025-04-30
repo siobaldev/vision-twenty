@@ -6,7 +6,7 @@ import { IoPlay } from "react-icons/io5";
 import { IoPause } from "react-icons/io5";
 
 export default function Timer() {
-  const initialTime = 1 * 60;
+  const initialTime = 20 * 60;
   const restTime = 20;
   const [timeLeft, setTimeLeft] = useState<number>(initialTime);
   const [isRunning, setIsRunning] = useState<boolean>(false);
