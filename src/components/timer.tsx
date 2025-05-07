@@ -88,10 +88,10 @@ export default function Timer() {
 
   return (
     <div className="flex flex-col items-center justify-center gap-y-4">
-      <h1 className="font-orbitron text-7xl min-[30rem]:text-8xl sm:text-[8rem] md:text-[12rem] tracking-wider lg:text-[12rem] select-none">
+      <h1 className="font-orbitron text-7xl tracking-wider select-none min-[30rem]:text-8xl sm:text-[8rem] md:text-[12rem] lg:text-[12rem]">
         {formatTime(timeLeft)}
       </h1>
-      <div className="flex mt-10 gap-x-10">
+      <div className="mt-10 flex gap-x-10">
         <button
           onClick={resetTimer}
           disabled={timeLeft === initialTime ? true : false}
