@@ -1,8 +1,8 @@
 export default function timerInfo() {
   return (
-    <div className="flex gap-y-10 flex-col mb-20">
+    <div className="flex flex-col mb-20 gap-y-10">
       <div className="flex flex-col gap-y-8">
-        <h1 className="lg:text-4xl text-2xl md:text-3xl font-medium">
+        <h1 className="text-2xl font-medium lg:text-4xl md:text-3xl">
           What is the 20-20-20 Rule?
         </h1>
         <p className="text-base md:text-lg lg:text-xl">
@@ -14,7 +14,7 @@ export default function timerInfo() {
         </p>
       </div>
       <div className="flex flex-col gap-y-8">
-        <h1 className="lg:text-4xl text-2xl md:text-3xl font-medium">
+        <h1 className="text-2xl font-medium lg:text-4xl md:text-3xl">
           Why is this rule important?
         </h1>
         <p className="text-base md:text-lg lg:text-xl">
@@ -27,7 +27,7 @@ export default function timerInfo() {
         </p>
       </div>
       <div className="flex flex-col gap-y-8">
-        <h1 className="lg:text-4xl text-2xl md:text-3xl font-medium">
+        <h1 className="text-2xl font-medium lg:text-4xl md:text-3xl">
           How does the 20-20-20 Rule work?
         </h1>
         <p className="text-base md:text-lg lg:text-xl">
