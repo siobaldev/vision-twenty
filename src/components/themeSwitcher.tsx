@@ -18,9 +18,9 @@ export function ThemeSwitcher() {
   return (
     <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
       {theme === "light" ? (
-        <IoMoon className="size-8 sm:size-12" />
+        <IoMoon className="size-8 cursor-pointer sm:size-12" />
       ) : (
-        <IoSunny className="size-8 sm:size-12" />
+        <IoSunny className="size-8 cursor-pointer sm:size-12" />
       )}
     </button>
   );
