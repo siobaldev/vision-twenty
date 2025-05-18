@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from "react";
 import { IoStop } from "react-icons/io5";
 import { IoPlay } from "react-icons/io5";
 import { IoPause } from "react-icons/io5";
+import { useAlarmStore } from "./useAlarmStore";
+import { useSettingStore } from "./useSettingStore";
 
 export default function Timer() {
   const initialTime = 20 * 60;
@@ -13,32 +15,46 @@ export default function Timer() {
   const [isResting, setIsResting] = useState<boolean>(false);
   const [audioDuration, setAudioDuration] = useState<number>(1);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const { alarm, setAlarm, volume, setVolume } = useAlarmStore();
+  const { setDisableSetting } = useSettingStore();
+
+  useEffect(() => {
+    const storedAlarm = localStorage.getItem("alarmSound");
+    const storedVolume = localStorage.getItem("volume");
+
+    setAlarm(storedAlarm || "fireflies-alarm");
+    setVolume(storedVolume || "50");
+  }, [setAlarm, setVolume]);
+
+  useEffect(() => {
+    if (!alarm) return;
+
+    const audio = new Audio(`/audio/${alarm}.mp3`);
+    audioRef.current = audio;
+    audioRef.current.volume = Number(volume) / 100;
+
+    const handleAudioData = () => {
+      const duration = audio.duration;
+      setAudioDuration(duration);
+    };
+
+    audio.addEventListener("loadedmetadata", handleAudioData);
+
+    return () => {
+      audio.removeEventListener("loadedmetadata", handleAudioData);
+    };
+  }, [alarm, volume]);
 
   useEffect(() => {
     let intervalID: NodeJS.Timeout | undefined;
     let timeoutID: NodeJS.Timeout | undefined;
-
-    if (!audioRef.current) {
-      const audio = new Audio("/audio/fireflies-alarm.mp3");
-      audioRef.current = audio;
-
-      const handleAudioData = () => {
-        const duration = audio.duration;
-        setAudioDuration(duration);
-      };
-
-      audio.addEventListener("loadedmetadata", handleAudioData);
-
-      return () => {
-        audio.removeEventListener("loadedmetadata", handleAudioData);
-      };
-    }
 
     if (isRunning && timeLeft > 0) {
       intervalID = setInterval(() => {
         setTimeLeft((prevTime) => prevTime - 1);
       }, 1000);
     } else if (timeLeft === 0 && !isResting) {
+      setDisableSetting(true);
       audioRef.current!.play();
       timeoutID = setTimeout(() => {
         setIsResting(true);
@@ -47,6 +63,7 @@ export default function Timer() {
     }
 
     if (timeLeft === 0 && isResting) {
+      setDisableSetting(true);
       audioRef.current!.play();
       timeoutID = setTimeout(() => {
         setIsResting(false);
@@ -55,10 +72,20 @@ export default function Timer() {
     }
 
     return () => {
+      setDisableSetting(false);
       clearTimeout(timeoutID);
       clearInterval(intervalID);
     };
-  }, [isRunning, timeLeft, isResting, audioDuration, initialTime]);
+  }, [
+    isRunning,
+    timeLeft,
+    isResting,
+    audioDuration,
+    initialTime,
+    alarm,
+    volume,
+    setDisableSetting,
+  ]);
 
   const toggleTimer = () => {
     setIsRunning(!isRunning);

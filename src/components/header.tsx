@@ -1,16 +1,14 @@
 import { ThemeSwitcher } from "./themeSwitcher";
-import { RiSettings3Fill } from "react-icons/ri";
-import { RiMusic2Fill } from "react-icons/ri";
 import Logo from "./logo";
+import Setting from "./setting";
 
 export default function Header() {
   return (
-    <div className="absolute top-0 w-full flex justify-between items-center pt-10">
+    <div className="absolute top-0 flex w-full items-center justify-between pt-10">
       <Logo />
       <div className="flex gap-x-6 md:gap-x-10">
         <ThemeSwitcher />
-        <RiMusic2Fill className="size-8 sm:size-12" />
-        <RiSettings3Fill className="size-8 sm:size-12" />
+        <Setting />
       </div>
     </div>
   );
