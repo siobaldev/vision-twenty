@@ -43,7 +43,9 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Vision20" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
-      <body className={`${geist.variable} ${orbitron.variable} antialiased`}>
+      <body
+        className={`${geist.variable} ${orbitron.variable} bg-light text-light-text dark:text-dark-text dark:bg-dark antialiased`}
+      >
         <Providers>{children}</Providers>
       </body>
     </html>
