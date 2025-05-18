@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 @theme {
   /* Fonts */
@@ -9,11 +12,7 @@
   --color-dark: #1f1f1f;
   --color-light-text: #2e2e2e;
   --color-dark-text: #d1cfc0;
-}
-
-:root {
-  --background: var(--color-light);
-  --foreground: var(--color-light-text);
+  --color-orange: #f76f53;
 }
 
 .dark {
@@ -22,8 +21,6 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: var(--font-geist);
 }
 
