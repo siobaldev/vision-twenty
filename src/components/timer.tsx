@@ -122,11 +122,12 @@ export default function Timer() {
         <button
           onClick={resetTimer}
           disabled={timeLeft === initialTime ? true : false}
+          aria-label="Stop"
         >
           <IoStop className="size-14 sm:size-16 md:size-20" />
         </button>
 
-        <button onClick={toggleTimer}>
+        <button onClick={toggleTimer} aria-label={isRunning ? "Pause" : "Play"}>
           {isRunning ? (
             <IoPause className="size-14 sm:size-16 md:size-20" />
           ) : (

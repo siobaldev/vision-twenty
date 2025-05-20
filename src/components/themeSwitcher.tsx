@@ -16,7 +16,10 @@ export function ThemeSwitcher() {
   if (!mounted) return <div className="size-8 sm:size-12" />;
 
   return (
-    <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+    <button
+      aria-label="Theme-Switcher"
+      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+    >
       {theme === "light" ? (
         <IoMoon className="size-8 cursor-pointer sm:size-12" />
       ) : (
