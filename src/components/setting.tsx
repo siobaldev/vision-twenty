@@ -115,12 +115,10 @@ export default function Setting() {
   return (
     <div>
       <DropdownMenu open={isOpen} onOpenChange={toggleSettings}>
-        <DropdownMenuTrigger
-          aria-label="Setting"
-          disabled={disableSetting}
-          asChild
-        >
-          <RiSettings3Fill className="size-8 cursor-pointer sm:size-12" />
+        <DropdownMenuTrigger disabled={disableSetting} asChild>
+          <button aria-label="Setting" className="flex items-center">
+            <RiSettings3Fill className="size-8 cursor-pointer sm:size-12" />
+          </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="bg-light dark:border-light/20 border-dark/20 dark:bg-dark text-dark dark:text-light mr-4 xl:mr-0">
           <DropdownMenuLabel>Alarms</DropdownMenuLabel>
